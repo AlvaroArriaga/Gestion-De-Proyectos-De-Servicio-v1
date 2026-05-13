@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Registrar Avance</title>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark mb-0">
+        <div class="container-lg">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-rocket"></i> ProyectoHub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Dashboard</a>
+                    <a class="nav-link" href="gestionar_entidades.html"><i class="fas fa-building"></i> Entidades</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <div class="dashboard-header container-lg">
+        <div class="row">
+            <div class="col-md-8">
+                <h1><i class="fas fa-chart-line"></i> Registrar Avance</h1>
+                <p>Documenta el progreso de la actividad con evidencias y comentarios del asesor</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="container-lg py-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <i class="fas fa-file-upload"></i> Formulario de Avance
+                    </div>
+                    <div class="card-body">
+                        <form id="avanceForm" novalidate>
+                            <!-- SECCIÓN 1: INFORMACIÓN DE LA ACTIVIDAD -->
+                            <h5 class="mb-3 text-primary">
+                                <i class="fas fa-info-circle"></i> Información de la Actividad
+                            </h5>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <i class="fas fa-tasks"></i> ID Actividad
+                                        </label>
+                                        <input type="number" id="actividad_id" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <i class="fas fa-project-diagram"></i> ID Proyecto
+                                        </label>
+                                        <input type="number" id="proyecto_id" class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SECCIÓN 2: EVIDENCIAS -->
+                            <hr class="my-4">
+                            <h5 class="mb-3 text-primary">
+                                <i class="fas fa-paperclip"></i> Evidencia del Avance
+                            </h5>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-link"></i> Enlace de Evidencia
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-globe"></i></span>
+                                    <input type="url" id="evidencia_url" class="form-control" 
+                                           placeholder="https://drive.google.com/... o enlace a repositorio" required>
+                                </div>
+                                <small class="text-muted">Puede ser un enlace a Google Drive, repositorio GitHub, documento, etc.</small>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-image"></i> O Adjuntar Archivo (Opcional)
+                                </label>
+                                <input type="file" id="archivo_evidencia" class="form-control">
+                                <small class="text-muted">Soporta: PDF, imágenes, documentos (máx. 10MB)</small>
+                            </div>
+
+                            <!-- SECCIÓN 3: DESCRIPCIÓN DEL AVANCE -->
+                            <hr class="my-4">
+                            <h5 class="mb-3 text-primary">
+                                <i class="fas fa-pen-fancy"></i> Descripción del Avance
+                            </h5>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-align-left"></i> Descripción Detallada
+                                </label>
+                                <textarea id="descripcion_avance" class="form-control" rows="4" 
+                                          placeholder="Describe lo realizado en esta etapa del proyecto..." required></textarea>
+                                <small class="text-muted">Incluye qué se hizo, cómo se realizó y resultados logrados</small>
+                            </div>
+
+                            <!-- SECCIÓN 4: COMENTARIO DEL ASESOR -->
+                            <hr class="my-4">
+                            <h5 class="mb-3 text-primary">
+                                <i class="fas fa-user-tie"></i> Comentario del Asesor
+                            </h5>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-comment"></i> Observaciones y Recomendaciones
+                                </label>
+                                <textarea id="comentario_asesor" class="form-control" rows="3" 
+                                          placeholder="Comentarios del asesor académico..."></textarea>
+                                <small class="text-muted">Retroalimentación, recomendaciones o sugerencias de mejora</small>
+                            </div>
+
+                            <!-- SECCIÓN 5: ESTADO -->
+                            <hr class="my-4">
+                            <h5 class="mb-3 text-primary">
+                                <i class="fas fa-circle-notch"></i> Estado del Avance
+                            </h5>
+
+                            <div class="form-group mb-4">
+                                <label class="form-label">
+                                    <i class="fas fa-flag"></i> Estado
+                                </label>
+                                <select id="estado_avance" class="form-select" required>
+                                    <option value="">-- Selecciona un estado --</option>
+                                    <option value="Pendiente">Pendiente de Revisión</option>
+                                    <option value="En Revisión">En Revisión</option>
+                                    <option value="Completado">Completado</option>
+                                    <option value="Requiere Ajustes">Requiere Ajustes</option>
+                                </select>
+                            </div>
+
+                            <!-- ACCIONES -->
+                            <div class="d-grid gap-2 d-sm-flex justify-content-sm-between">
+                                <button type="submit" class="btn btn-success btn-lg">
+                                    <i class="fas fa-save"></i> Guardar Avance
+                                </button>
+                                <button type="button" class="btn btn-secondary btn-lg" onclick="volver()">
+                                    <i class="fas fa-arrow-left"></i> Volver
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- TARJETA DE INFORMACIÓN -->
+                <div class="card mt-4">
+                    <div class="card-header bg-info text-white">
+                        <i class="fas fa-lightbulb"></i> Consejos para Registrar Avances
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-success"></i> <strong>Sé detallado:</strong> Describe exactamente qué se realizó</li>
+                            <li class="mb-2"><i class="fas fa-check text-success"></i> <strong>Incluye evidencia:</strong> Proporciona enlaces o archivos que demuestren el trabajo</li>
+                            <li class="mb-2"><i class="fas fa-check text-success"></i> <strong>Honestidad:</strong> Reporta problemas encontrados y cómo los resolviste</li>
+                            <li><i class="fas fa-check text-success"></i> <strong>Regularidad:</strong> Actualiza los avances frecuentemente</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; 2024 ProyectoHub - Plataforma de Seguimiento de Proyectos de Servicio</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="storage.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const actividadId = urlParams.get('actividad_id');
+        const proyectoId = urlParams.get('proyecto_id');
+
+        document.getElementById('actividad_id').value = actividadId || '';
+        document.getElementById('proyecto_id').value = proyectoId || '';
+
+        document.getElementById('avanceForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const actividad_id = document.getElementById('actividad_id').value;
+            const evidencia_url = document.getElementById('evidencia_url').value.trim();
+            const descripcion_avance = document.getElementById('descripcion_avance').value.trim();
+            const comentario_asesor = document.getElementById('comentario_asesor').value.trim();
+            const estado_avance = document.getElementById('estado_avance').value;
+
+            if (!actividad_id || !evidencia_url || !descripcion_avance || !estado_avance) {
+                mostrarAlerta('Por favor completa los campos requeridos', 'danger');
+                return;
+            }
+
+            guardarAvance({
+                actividad_id: parseInt(actividad_id, 10),
+                evidencia_url,
+                descripcion_avance,
+                comentario_asesor,
+                estado_avance
+            });
+
+            mostrarAlerta('¡Avance registrado exitosamente!', 'success');
+            setTimeout(() => {
+                if (proyectoId) {
+                    window.location.href = `gestion_actividades.html?id=${proyectoId}`;
+                } else {
+                    window.location.href = 'index.html';
+                }
+            }, 1200);
+        });
+
+        function volver() {
+            if (proyectoId) {
+                window.location.href = `gestion_actividades.html?id=${proyectoId}`;
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+
+        function mostrarAlerta(mensaje, tipo = 'info') {
+            const alerta = document.createElement('div');
+            alerta.className = `alert alert-${tipo} alert-dismissible fade show position-fixed`;
+            alerta.style.top = '20px';
+            alerta.style.right = '20px';
+            alerta.style.zIndex = '9999';
+            alerta.style.minWidth = '300px';
+            alerta.innerHTML = `
+                <i class="fas fa-${tipo === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${mensaje}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alerta);
+            setTimeout(() => alerta.remove(), 5000);
+        }
+    </script>
+</body>
+</html>
